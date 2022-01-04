@@ -6,22 +6,11 @@
 /*   By: rtinisha <rtinisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:16:51 by rtinisha          #+#    #+#             */
-/*   Updated: 2022/01/04 06:50:53 by rtinisha         ###   ########.fr       */
+/*   Updated: 2022/01/04 18:49:33 by rtinisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-t_option	*init_flags(t_option *flags)
-{
-	flags->type = 0;
-	flags->width = 0;
-	flags->minus = 0;
-	flags->zero = 0;
-	flags->precision = -1;
-	flags->star = 0;
-	return (flags);
-}
 
 int	ft_define_conversion(va_list args, const char *str, int i)
 {
@@ -30,18 +19,18 @@ int	ft_define_conversion(va_list args, const char *str, int i)
 	len = 0;
 	if (str[i] == 'c')
 		len = ft_print_char(va_arg(args, int));
+	if (str[i] == '%')
+		len = ft_print_char('%');
 	if (str[i] == 's')
 		len = ft_print_str(va_arg(args, char *));
 	if (str[i] == 'p')
 		len = ft_print_ptr(va_arg(args, unsigned long));
 	if (str[i] == 'd' || str[i] == 'i')
 		len = ft_print_digit(va_arg(args, int));
-	// if (str[i] == 'u')
-	// 	len = ft_print_char(va_arg(args, unsigned int));
 	if (str[i] == 'x' || str[i] == 'X')
 		len = ft_print_hex(va_arg(args, unsigned int), str[i]);
-	// if (str[i] == 'X')
-	// 	len = ft_print_char(va_arg(args, unsigned int));
+	if (str[i] == 'u')
+		len = ft_print_uint(va_arg(args, unsigned int));
 	return (len);
 }
 
@@ -65,18 +54,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (len);
 }
-
-// int	main(void)
-// {
-// 	// void	*ptr;
-
-// 	// // ptr = (char *)&"world";
-// 	// ptr = &"world";
-// 	// printf("%d\n", ft_printf("Hello %c\n", 'w'));
-// 	// printf("%d\n", ft_printf("Hello %s\n", "world"));
-// 	// printf("%d\n", ft_printf("myne: Hello %p\n", ptr));
-// 	// printf("%d\n", printf("syst: Hello %p\n", ptr));
-// 	printf("%d\n", ft_printf("myne: Hello %d\n", 2147483648));
-// 	printf("%d\n", printf("syst: Hello %ld\n", 2147483648));
-// 	return (0);
-// }
