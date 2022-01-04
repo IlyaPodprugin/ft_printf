@@ -1,8 +1,8 @@
 NAME = libftprintf.a
 CC = cc
-HEADER = libft.h
+HEADER = ./includes/ft_printf.h
 CFLAGS = -Wall -Wextra -Werror -MMD
-SRC_FILES = 
+SRC_FILES = ./srcs/ft_printf.c
 OBJ_FILES = $(patsubst %.c,%.o,$(SRC_FILES))
 D_FILES = $(patsubst %.c,%.d,$(SRC_FILES))
 
@@ -10,7 +10,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ_FILES) $(HEADER)
 	$(MAKE) -C ./libft
-# ar -crs $(NAME) $?
+	ar -crs $(NAME) $?
 
 %.o : %.c
 	$(CC) $(FLAGS) -c $< -o $@ -MD
