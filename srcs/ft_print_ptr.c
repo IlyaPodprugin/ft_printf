@@ -6,7 +6,7 @@
 /*   By: rtinisha <rtinisha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 04:29:51 by rtinisha          #+#    #+#             */
-/*   Updated: 2022/01/04 20:31:20 by rtinisha         ###   ########.fr       */
+/*   Updated: 2022/01/06 00:33:10 by rtinisha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int	ft_print_ptr(unsigned long ptr)
 		free(result);
 	}
 	else
-		len += ft_print_str("(nil)");
+		len += ft_print_str("(null)");
 	return (len);
 }
